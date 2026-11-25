@@ -50,7 +50,7 @@ The project accepts the four-column format used by your transaction file:
 date,amount,category,description
 20261124210927628,2000,Income,Wallet
 20261125135839612,111,Income,Easy paisa
-20261125185908372,700,Commitment,Fund ja dynra aahin Chachi S2 khy
+20261125185908372,700,Commitment,Future ya recurring payments ki information 
 ```
 
 The `date` column supports compact timestamps in `YYYYMMDDHHmmssSSS` form (17 digits), compact dates such as `YYYYMMDD`, and ordinary formats such as `YYYY-MM-DD` and Pakistan-style `DD/MM/YYYY`. The time portion is accepted and normalized to its calendar date for daily reporting.
