@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090f18">
+  <meta name="description" content="A private, local-first personal financial intelligence dashboard.">
+  <title>Financial Universe · Personal Finance Intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" onerror="this.dataset.failed='true'"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" onerror="this.dataset.failed='true'"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-fallback" aria-hidden="true"></div>
+
+  <button class="sidebar-overlay" id="sidebar-overlay" aria-label="Close navigation"></button>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand-row">
+      <a class="brand" href="#overview" data-nav="overview" aria-label="Financial Universe overview">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span class="brand-copy"><strong>FINANCIAL</strong><small>UNIVERSE</small></span>
+      </a>
+      <button class="icon-button sidebar-close" id="sidebar-close" aria-label="Close sidebar"><span class="icon-x"></span></button>
+    </div>
+
+    <div class="workspace-switcher">
+      <span class="workspace-avatar">FU</span>
+      <span class="workspace-meta"><strong>Personal workspace</strong><small>Local environment</small></span>
+      <span class="status-dot" title="Local mode"></span>
+    </div>
+
+    <p class="nav-label">WORKSPACE</p>
+    <nav class="main-nav">
+      <button class="nav-item active" data-nav="overview"><span class="nav-icon">◫</span><span>Overview</span><kbd>01</kbd></button>
+      <button class="nav-item" data-nav="analytics"><span class="nav-icon">⌁</span><span>Analytics</span><kbd>02</kbd></button>
+      <button class="nav-item" data-nav="forecast"><span class="nav-icon">↗</span><span>Forecast</span><kbd>03</kbd></button>
+      <button class="nav-item" data-nav="patterns"><span class="nav-icon">◎</span><span>Patterns</span><kbd>04</kbd></button>
+      <button class="nav-item" data-nav="transactions"><span class="nav-icon">▤</span><span>Transactions</span><kbd>05</kbd></button>
+    </nav>
+
+    <p class="nav-label nav-label-spaced">MANAGEMENT</p>
+    <nav class="main-nav">
+      <button class="nav-item" data-nav="sources"><span class="nav-icon">◈</span><span>Data Sources</span><span class="nav-count" id="source-count">0</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="privacy-note"><span class="privacy-icon">⌑</span><div><strong>Your data stays yours.</strong><small>Stored locally in this browser. Nothing is uploaded.</small></div></div>
+      <div class="sidebar-footer"><span class="version-dot"></span><span>FINANCIAL UNIVERSE</span><span>v1.0</span></div>
+    </div>
+  </aside>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-button hamburger" id="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumb-current">Overview</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="local-indicator"><span class="status-dot"></span><span>LOCAL MODE</span></div>
+        <button class="icon-button theme-toggle" id="theme-toggle" aria-label="Switch to light theme" title="Toggle theme"><span id="theme-glyph">☼</span></button>
+        <div class="profile-chip"><span class="profile-avatar">F</span><span class="profile-name">Personal</span></div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+      <section class="page-loading"><span class="loader-ring"></span><span>Preparing your financial workspace…</span></section>
+    </main>
+
+    <footer class="app-footer"><span>FINANCIAL UNIVERSE</span><span><i class="status-dot"></i> Private · Local-first · Offline-ready</span></footer>
+  </div>
+
+  <input type="file" id="csv-file-input" accept=".csv,text/csv" hidden>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-mark">!</div>
+    <h2 id="dialog-title">Clear workspace data?</h2>
+    <p id="dialog-description">This removes saved and imported financial datasets from this browser. Your project CSV file will not be deleted.</p>
+    <div class="dialog-actions"><button class="button button-quiet" id="dialog-cancel">Cancel</button><button class="button button-danger" id="dialog-confirm">Clear data</button></div>
+  </dialog>
+</body>
+</html>
